@@ -3,12 +3,14 @@
 #include "cctk_Parameters.h"
 #include "loop.hxx"
 
+#define GFINDEXTYPE 1, 1, 1
+
 extern "C" void TestRestrict_Init(CCTK_ARGUMENTS) {
   DECLARE_CCTK_PARAMETERS;
   DECLARE_CCTK_ARGUMENTSX_TestRestrict_Init;
 
   CCTK_INFO("Initializing grid function");
-  grid.loop_all<1, 1, 1>(grid.nghostzones, [=](const Loop::PointDesc &pt) {
+  grid.loop_all<GFINDEXTYPE>(grid.nghostzones, [=](const Loop::PointDesc &pt) {
     CCTK_REAL canary = 100 + 10 * cctk_iteration + 1 * cctk_level;
     iteration(pt.I) = canary;
   });
@@ -20,7 +22,7 @@ extern "C" void TestRestrict_Update(CCTK_ARGUMENTS) {
 
   CCTK_VINFO("Updating grid function at iteration %d level %d time %g",
              cctk_iteration, cctk_level, cctk_time);
-  grid.loop_int<1, 1, 1>(
+  grid.loop_int<GFINDEXTYPE>(
       grid.nghostzones, [=] CCTK_HOST(const Loop::PointDesc &pt) {
         CCTK_REAL canary = 100 + 10 * cctk_iteration + 1 * cctk_level;
         iteration(pt.I) = canary;
