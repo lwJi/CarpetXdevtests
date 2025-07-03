@@ -1,0 +1,6 @@
+# Interface definition for thorn TestRestrict
+implements: TestRestrict
+
+USES INCLUDE HEADER: loop.hxx
+
+CCTK_REAL iteration TYPE=GF CENTERING={VVV} TAGS="checkpoint='yes'" "restriction and prolongation test"
