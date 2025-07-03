@@ -3,4 +3,4 @@ implements: TestRestrict
 
 USES INCLUDE HEADER: loop.hxx
 
-CCTK_REAL iteration TYPE=GF CENTERING={VVV} TAGS="checkpoint='yes'" "restriction and prolongation test"
+CCTK_REAL iteration TYPE=GF CENTERING={CCC} TAGS="checkpoint='yes'" "restriction and prolongation test"
