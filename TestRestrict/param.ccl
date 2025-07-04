@@ -1,1 +1,11 @@
 # Parameter definitions for thorn TestRestrict
+
+CCTK_REAL amplitude "Initial amplitude"
+{
+  *:* :: ""
+} 1.0
+
+CCTK_REAL gaussian_width "width of Gaussian"
+{
+  (0:* :: ""
+} 1.0

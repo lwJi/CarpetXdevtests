@@ -33,8 +33,6 @@ extern "C" void TestRestrict_Init(CCTK_ARGUMENTS) {
 
   CCTK_INFO("Initializing grid function");
   grid.loop_all<GFINDEXTYPE>(grid.nghostzones, [=](const Loop::PointDesc &p) {
-    const CCTK_REAL amplitude = 1.0;
-    const CCTK_REAL gaussian_width = 0.1;
     CCTK_REAL u, rho;
     gaussian(amplitude, gaussian_width, cctk_time, p.x, p.y, p.z, u, rho);
     iteration(p.I) = u;
@@ -49,8 +47,6 @@ extern "C" void TestRestrict_Update(CCTK_ARGUMENTS) {
              cctk_iteration, cctk_level, cctk_time);
   grid.loop_int<GFINDEXTYPE>(
       grid.nghostzones, [=] CCTK_HOST(const Loop::PointDesc &p) {
-        const CCTK_REAL amplitude = 1.0;
-        const CCTK_REAL gaussian_width = 0.1;
         CCTK_REAL u, rho;
         gaussian(amplitude, gaussian_width, cctk_time, p.x, p.y, p.z, u, rho);
         iteration(p.I) = u + cctk_level;
