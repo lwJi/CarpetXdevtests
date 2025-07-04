@@ -53,6 +53,6 @@ extern "C" void TestRestrict_Update(CCTK_ARGUMENTS) {
         const CCTK_REAL gaussian_width = 0.1;
         CCTK_REAL u, rho;
         gaussian(amplitude, gaussian_width, cctk_time, p.x, p.y, p.z, u, rho);
-        iteration(p.I) = u;
+        iteration(p.I) = u + cctk_level;
       });
 }
